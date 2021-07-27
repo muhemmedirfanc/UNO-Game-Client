@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "@material-ui/core";
+import theme from "./components/theme/theme";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import Home from "./components/Home/Home";
+import NotFound from "./components/NotFound/NotFound";
+import CreateRoom from "./components/CreateRoom/CreateRoom";
+import WaitingRoom from "./components/WaitingRoom/WaitingRoom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/create-room" component={CreateRoom} />
+          <Route exact path="/waiting-room" component={WaitingRoom} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 
