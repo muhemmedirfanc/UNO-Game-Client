@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     "& img": {
-      minHeight: "10.5rem",
+      minHeight: "6.5rem",
       marginTop: "3.25rem",
     },
 
@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#444444",
     color: theme.palette.text.primary,
     fontWeight: "700",
-    width: "15.625rem",
-    height: "3.6875rem",
+    width: "10.625rem",
+    height: "2.6875rem",
     borderRadius: "3.125rem",
     fontSize: "1.5625rem",
 
@@ -77,12 +77,10 @@ const useStyles = makeStyles((theme) => ({
   TextField: {
     borderRadius: "3.125rem",
     marginTop: "35px",
-    width: "600px",
-
+    width: "450px",
     [theme.breakpoints.down("sm")]: {
       width: "300px",
     },
-
     "& .Mui-error": {
       color: "white",
     },
@@ -100,7 +98,6 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "1rem",
       },
     },
-
     "& .MuiFormLabel-root": {
       color: "white",
     },
@@ -130,6 +127,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+  },
+  spinner: {
+    display: "flex",
+    position: "relative",
+    top: "550px",
+    zIndex: "10",
+    [theme.breakpoints.up("md")]: {
+      top: "525px",
+    },
   },
 }));
 

@@ -11,9 +11,7 @@ const Home = () => {
 
     return (
         <div className={classes.root}>
-
             <div className={classes.container}>
-
                 <div className={classes.logo}>
             <img src={UnoLogo} alt="" />
                 </div>
@@ -37,7 +35,7 @@ const Home = () => {
         CREATE ROOM
         </Button>
 
-        <Button className={clsx(classes.button, classes.buttonTwo)} variant="contained" >
+        <Button className={clsx(classes.button, classes.buttonTwo)} component={Link} to="/join-room" variant="contained" >
         Join room
         </Button>
 

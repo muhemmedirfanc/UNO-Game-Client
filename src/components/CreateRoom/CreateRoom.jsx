@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import useStyles from './styles'
 import { Button, Typography,TextField  } from '@material-ui/core'
 import clsx from 'clsx';
@@ -6,16 +6,28 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 
 
+
+
+
 import UnoLogo  from '../../assets/images/UnoLogo.svg'
+import {  useHistory} from 'react-router-dom';
+import { SocketContext } from '../../socketIO/socketIO';
+
+
 
 
 const CreateRoom = () => {
 
     const classes = useStyles()
+    const history = useHistory()
+    const socket =  useContext(SocketContext)
 
+   
     const [publicRoom, setPublicRoom] = useState(null);
     const [privateRoom, setPrivateRoom] = useState(null);
     const [noSlecetedRoomError,setNoSlecetedRoomError] = useState(false);
+   
+  
 
     const handleSetPublicRoom = ()=>{
         if(publicRoom){
@@ -36,7 +48,9 @@ const CreateRoom = () => {
         }
     }
 
-    
+ 
+    console.log(socket.id)
+  
 
         const validationSchema = yup.object({name:yup.string("Enter your name.").required("Name is required.")})
 
@@ -56,14 +70,29 @@ const CreateRoom = () => {
                       setNoSlecetedRoomError(false)
                       values.publicRoom = publicRoom
                       values.privateRoom = privateRoom
+                      values.roomId = Math.random().toString().substring(13);
+                      if(privateRoom){
+                          values.roomPassword = Math.random().toString().substring(13);
+                      }
                       console.log(values)
+                     
+                     socket.emit('create-room',values);
+
+                     history.push(`/waiting-room?roomId=${values.roomId}&roomPassword=${privateRoom ? values.roomPassword:false}`);
+                    
+
+
                   }
                    
             }
         })
 
     return (
+
+
         <div className={classes.root}>
+
+          
 
             <div className={classes.container}>
 
@@ -102,6 +131,7 @@ const CreateRoom = () => {
          
            
                 <form onSubmit={formik.handleSubmit} className={classes.form}>
+                    <div className={classes.textfieldContainer}>
 
                     <TextField variant="outlined" 
                     className={classes.TextField} 
@@ -129,6 +159,10 @@ const CreateRoom = () => {
 <Button color="primary" variant="contained"  className={clsx(classes.button,classes.createButton)} fullWidth type="submit">
           CREATE
         </Button>
+
+                    </div>
+
+                  
                 </form>
          
 

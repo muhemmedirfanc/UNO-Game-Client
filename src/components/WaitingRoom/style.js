@@ -14,9 +14,12 @@ const useStyles = makeStyles((theme) => ({
     "& img": {
       minHeight: "7.5rem",
       marginTop: "3.25rem",
+      [theme.breakpoints.down("xs")]: {
+        marginTop: "2.25rem",
+      },
     },
 
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       "& img": {
         minHeight: "8.25rem",
         marginTop: "3.25rem",
@@ -29,13 +32,26 @@ const useStyles = makeStyles((theme) => ({
   joinedUsers: {
     display: "flex",
     justifyContent: "space-between",
-    marginTop: "50px",
-    width: "500px",
+    marginTop: "3.125rem",
+    width: "31.25rem",
+    [theme.breakpoints.down("xs")]: {
+      width: "18.75rem",
+      marginTop: "2rem",
+    },
   },
-  userSvg: {},
+  userSvg: {
+    [theme.breakpoints.down("xs")]: {
+      width: "3.125rem",
+    },
+  },
   useNameText: {
     fontSize: "1rem",
     fontWeight: "700",
+    textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: ".8rem",
+      fontWeight: "500",
+    },
   },
 
   button: {
@@ -46,16 +62,46 @@ const useStyles = makeStyles((theme) => ({
     height: "4.6875rem",
     borderRadius: "3.125rem",
     fontSize: "1.5625rem",
-    marginTop: "3.125rem",
+
     "&:hover": {
       backgroundColor: "#5B5A5A",
     },
 
-    [theme.breakpoints.down("sm")]: {
-      marginTop: "3.125rem",
+    [theme.breakpoints.down("xs")]: {
       width: "13.625rem",
       height: "3.6875rem",
     },
+  },
+  roomId: {
+    fontSize: "1.5rem",
+    fontWeight: "700",
+    marginTop: "1.5rem",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8rem",
+      fontWeight: "600",
+      marginTop: "0.8rem",
+    },
+  },
+  roomPassword: {
+    fontSize: "1.5rem",
+    fontWeight: "700",
+    marginTop: "0.5rem",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8rem",
+      fontWeight: "600",
+      marginTop: "0.3rem",
+    },
+  },
+  buttons: {
+    display: "flex",
+    marginTop: "3.125rem",
+    marginBottom: "3.125rem",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "3.125rem",
+    },
+  },
+  ShareIcon: {
+    marginLeft: "1.25rem",
   },
 }));
 
